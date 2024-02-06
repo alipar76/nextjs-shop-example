@@ -6,7 +6,7 @@ const prisma = new PrismaClient();
 const generateFakeProduct = () => ({
     name: faker.commerce.productName(),
     price: faker.commerce.price(),
-    description: faker.lorem.sentences(),
+    description: faker.lorem.sentence(),
     createdAt: faker.date.anytime(),
 });
 

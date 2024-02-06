@@ -1,7 +1,7 @@
 import Image from "next/image";
 
 async function getData() {
-    const res = await fetch("https://lcoalhost:3000/api/product");
+    const res = await fetch("http://localhost:3000/api/product");
     // The return value is *not* serialized
     // You can return Date, Map, Set, etc.
 
@@ -14,9 +14,16 @@ async function getData() {
 }
 
 export default async function Home() {
-    const data = await getData();
+    const products = await getData();
 
     return (
-        <main className="flex min-h-screen flex-col items-center justify-between p-24"></main>
+        <main className="flex min-h-screen flex-row items-center justify-between p-24">
+            {products.map((product: Object, index: number) => (
+                <div className="border-solid border-2 w-1/5" key={index}>
+                    <p>{product?.name}</p>
+                    <p>{product?.price}$</p>
+                </div>
+            ))}
+        </main>
     );
 }
